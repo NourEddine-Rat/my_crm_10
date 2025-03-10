@@ -1,0 +1,9 @@
+.nav-item {
+    transition: transform 0.1s ease, box-shadow 0.3s ease;
+}
+
+.nav-item:hover {
+    cursor: pointer;
+    transform: scale(0.99);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
