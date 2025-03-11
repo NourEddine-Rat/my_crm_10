@@ -13,5 +13,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
+Route::get('/clients', function () {
+    return Inertia::render('Clients');
+})->name('clients');
+
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

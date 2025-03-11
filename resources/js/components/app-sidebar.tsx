@@ -16,7 +16,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Clients',
-        url: '/dashboard',
+        url: '/clients',
         icon: UserPlus,
     },
     {
