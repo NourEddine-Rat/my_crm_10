@@ -11,7 +11,7 @@ export function NavUser(props) {
     const { auth } = usePage<SharedData>().props;
     const { state } = useSidebar();
     const isMobile = useIsMobile();
-    const nameWithRole = auth.user + ' ' + props.auth.role;
+    const nameWithRole = auth.user;
     return (
         <SidebarMenu>
             <SidebarMenuItem>

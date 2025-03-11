@@ -1,11 +1,11 @@
 import { PieChart, Pie, Cell, Legend } from "recharts";
 
 const StatsChart = ({ stats }) => {
-  const COLORS = ["#4F46E5", "#10B981", "#F59E0B", "#EF4444"]
+  const COLORS = ["#10B981", "#4F46E5", "#F59E0B", "#EF4444"]
 
   return (
     <div className="p-4 bg-transparent shadow-md rounded-lg w-80">
-      <h2 className="text-lg font-bold text-white-700 mb-4 text-center">
+      <h2 className="text-lg font-bold text-[#4A4B2F] mb-4 text-center">
         Statistiques
       </h2>
       <PieChart width={300} height={300}>
@@ -23,7 +23,7 @@ const StatsChart = ({ stats }) => {
             <Cell key={entry} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
-        <Legend />
+        <Legend wrapperStyle={{ color: '#4A4B2F' }} />
       </PieChart>
     </div>
   );

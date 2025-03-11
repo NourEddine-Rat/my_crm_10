@@ -29,8 +29,9 @@ export default function Dashboard(props) {
     return (
 
         <AppLayout breadcrumbs={breadcrumbs}>
+          <Head title="Dashboard"/>
   <div className="flex justify-between items-center gap-3 p-4">
-    <h1 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100" style={{textTransform:'capitalize'}}>Salut, {(props.auth.name).toLowerCase()}!</h1>
+    <h1 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100" style={{textTransform:'capitalize'}}>Bienvenue, {(props.auth.name).toLowerCase()}!</h1>
     
     {/* Select Dropdown */}
     <select className="form-select bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm">
@@ -56,7 +57,7 @@ export default function Dashboard(props) {
             </div>
             <div className="mt-2">
               <span className="nav-item-rate text-xs sm:text-sm lg:text-base text-green-500">
-                + 12.3% vs mois dernier
+              + 12.3% ce mois
               </span>
             </div>
           </div>
@@ -79,7 +80,7 @@ export default function Dashboard(props) {
             </div>
             <div className="mt-2">
               <span className="nav-item-rate text-xs sm:text-sm lg:text-base text-green-500">
-                + 12.3% vs mois dernier
+              + 12.3% ce mois
               </span>
             </div>
           </div>
@@ -102,7 +103,7 @@ export default function Dashboard(props) {
             </div>
             <div className="mt-2">
               <span className="nav-item-rate text-xs sm:text-sm lg:text-base text-green-500">
-                + 12.3% vs mois dernier
+              + 12.3% ce mois
               </span>
             </div>
           </div>
@@ -117,16 +118,17 @@ export default function Dashboard(props) {
           <div className="flex flex-col flex-grow min-w-0">
             <div>
               <p className="nav-item-text text-base sm:text-lg lg:text-xl text-neutral-900 dark:text-neutral-100 font-light">
-                Dossiers en attente
+                En attente
               </p>
               <span className="nav-item-number text-xl sm:text-2xl lg:text-3xl font-bold text-neutral-900 dark:text-neutral-100">
                 12
               </span>
             </div>
             <div className="mt-2">
-              <span className="nav-item-rate text-xs sm:text-sm lg:text-base text-green-500">
-                + 9.06% vs mois dernier
+            <span className="nav-item-rate text-xs sm:text-sm lg:text-base text-green-500">
+                + 12.3% ce mois
               </span>
+
             </div>
           </div>
           <div className="nav-item-icon flex items-center justify-center text-3xl sm:text-4xl lg:text-5xl pl-4">

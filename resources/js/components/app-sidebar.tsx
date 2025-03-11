@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutDashboard, UserPlus, Search,MessageCircle,Atom } from 'lucide-react';
+import { BookOpen, Folder, LayoutDashboard, UserPlus, Search,MessageCircle,Atom,ShieldPlus,Github } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -15,7 +15,7 @@ const mainNavItems: NavItem[] = [
         icon: LayoutDashboard,
     },
     {
-        title: 'Nouveaux leads',
+        title: 'Clients',
         url: '/dashboard',
         icon: UserPlus,
     },
@@ -34,10 +34,16 @@ const mainNavItems: NavItem[] = [
 
 const footerNavItems: NavItem[] = [
     {
-        title: "projet informations",
+        title: "Gérer les admins",
         url: 'https://github.com/laravel/react-starter-kit',
-        icon: Atom,
+        icon: ShieldPlus,
     },
+    {
+        title: "projet informations",
+        url: 'https://github.com/NourEddine-Rat/my_crm_10/tree/main',
+        icon: Github,
+    },
+    
     
 ];
 
