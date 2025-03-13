@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutDashboard, UserPlus, Search,MessageCircle,Atom,ShieldPlus,Github } from 'lucide-react';
+import { BookOpen, Folder, LayoutDashboard, UserPlus, Search,MessageCircle,Atom,ShieldPlus,Github,UserRoundPen, } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -14,15 +14,16 @@ const mainNavItems: NavItem[] = [
         url: '/dashboard',
         icon: LayoutDashboard,
     },
+    
     {
-        title: 'Clients',
-        url: '/clients',
+        title: 'Nouveau lead',
+        url: '/dashboard',
         icon: UserPlus,
     },
     {
-        title: 'En qualification',
-        url: '/dashboard',
-        icon: Search,
+        title: 'Statut des leads',
+        url: '/clients',
+        icon: UserRoundPen,
     },
     {
         title: 'Messages',
