@@ -1,4 +1,3 @@
-import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
@@ -8,9 +7,9 @@ import { GoVerified } from "react-icons/go";
 import { FiAlertCircle } from "react-icons/fi";
 import "@fontsource/instrument-sans";
 import StatsChart from './StatsChart';
-import PerformanceDeVenteChart from './PerformanceDeVenteChart'
-import './dashboard.css'
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import PerformanceDeVenteChart from './PerformanceDeVenteChart';
+import './dashboard.css';
+import { router } from '@inertiajs/react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -19,137 +18,96 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Dashboard(props) {
+export default function Dashboard(props: { auth: { name: any; }, CinqDernierLead: any }) {
     const statsData = [
         { label: "Total Clients", value: 120 },
         { label: "Nouveaux Leads", value: 45 },
         { label: "En Qualification", value: 30 },
         { label: "Autres", value: 15 },
-      ];
+    ];
+
     return (
-
         <AppLayout breadcrumbs={breadcrumbs}>
-          <Head title="Dashboard"/>
-  <div className="flex justify-between items-center gap-3 p-4">
-    <h1 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100" style={{textTransform:'capitalize'}}>Bienvenue, {(props.auth.name).toLowerCase()}!</h1>
-    
-    {/* Select Dropdown */}
-    <select className="form-select bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm">
-      <option>Aujourd'hui</option>
-      <option>Cette semaine</option>
-      <option>Ce mois</option>
-      <option>Cette année</option>
-    </select>
-  </div>
-
-  <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4" style={{ fontFamily: "system-ui, sans-serif", fontWeight: 500 }}>
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-      <div className="nav-item border-sidebar-border/70 dark:border-sidebar-border relative aspect-video overflow-hidden rounded-xl border">
-        <div className="flex justify-between p-4 sm:p-6">
-          <div className="flex flex-col flex-grow min-w-0">
-            <div>
-              <p className="nav-item-text text-base sm:text-lg lg:text-xl text-neutral-900 dark:text-neutral-100 font-light">
-                Total clients
-              </p>
-              <span className="nav-item-number text-xl sm:text-2xl lg:text-3xl font-bold text-neutral-900 dark:text-neutral-100">
-                1,234
-              </span>
+            <Head title="Dashboard" />
+            <div className="flex justify-between items-center gap-4 p-6 bg-white dark:bg-neutral-900 shadow-sm">
+                <h1 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100" style={{ textTransform: 'capitalize' }}>
+                    Bienvenue, {props.auth.name.toLowerCase()}!
+                </h1>
+                <select className="form-select bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-100">
+                    <option>Aujourd'hui</option>
+                    <option>Cette semaine</option>
+                    <option>Ce mois</option>
+                    <option>Cette année</option>
+                </select>
             </div>
-            <div className="mt-2">
-              <span className="nav-item-rate text-xs sm:text-sm lg:text-base text-green-500">
-              + 12.3% ce mois
-              </span>
+
+            <div className="p-6 space-y-6 bg-neutral-50 dark:bg-neutral-900">
+                {/* Stats Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {[
+                        { label: "Total Clients", value: "1,234", icon: <MdSupervisedUserCircle />, rate: "+12.3% ce mois" },
+                        { label: "Nouveaux Leads", value: "10", icon: <CiCirclePlus />, rate: "+12.3% ce mois" },
+                        { label: "En Qualification", value: "3", icon: <GoVerified />, rate: "+12.3% ce mois" },
+                        { label: "En attente", value: "12", icon: <FiAlertCircle />, rate: "+12.3% ce mois" },
+                    ].map((stat, index) => (
+                        <div key={index} className="bg-white dark:bg-neutral-800 rounded-xl shadow-sm hover:shadow-md transition-shadow p-6">
+                            <div className="flex justify-between items-center">
+                                <div>
+                                    <p className="text-sm text-neutral-500 dark:text-neutral-400">{stat.label}</p>
+                                    <p className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">{stat.value}</p>
+                                    <p className="text-xs text-green-500 mt-1">{stat.rate}</p>
+                                </div>
+                                <div className="text-4xl text-neutral-900 dark:text-neutral-100">
+                                    {stat.icon}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Charts and Leads Section */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {/* Derniers Leads */}
+                    <div className="bg-white dark:bg-neutral-800 rounded-xl shadow-sm p-6">
+                        <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-4">Derniers Leads</h2>
+                        <ul className="space-y-3">
+                            {props.CinqDernierLead && props.CinqDernierLead.map((client: any) => (
+                                <li
+                                    key={client.client_id}
+                                    className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
+                                    onClick={() => router.get(`/Details_clients/${client.client_id}`)}
+                                >
+                                    <div className="flex justify-between items-center">
+                                        <div>
+                                            <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 text-sm">
+                                                {client.first_name} {client.last_name}
+                                            </h3>
+                                            <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                                                {client.email}
+                                            </p>
+                                        </div>
+                                        <div className="text-xs text-neutral-500 dark:text-neutral-400 whitespace-nowrap">
+                                            {new Date(client.created_at).toLocaleDateString('fr-FR')}
+                                        </div>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Stats Chart */}
+                    <div className="bg-white dark:bg-neutral-800 rounded-xl shadow-sm p-6 flex items-center justify-center">
+                        
+                        <StatsChart stats={statsData} />
+                    </div>
+                </div>
+
+                {/* Performance Chart */}
+                <div className="bg-white dark:bg-neutral-800 rounded-xl shadow-sm p-6">
+                    <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-4">Performance de Vente</h2>
+                    <PerformanceDeVenteChart />
+                </div>
             </div>
-          </div>
-          <div className="nav-item-icon flex items-center justify-center text-3xl sm:text-4xl lg:text-5xl pl-4">
-            <MdSupervisedUserCircle />
-          </div>
-        </div>
-      </div>
-
-      <div className="nav-item border-sidebar-border/70 dark:border-sidebar-border relative aspect-video overflow-hidden rounded-xl border">
-        <div className="flex justify-between p-4 sm:p-6">
-          <div className="flex flex-col flex-grow min-w-0">
-            <div>
-              <p className="nav-item-text text-base sm:text-lg lg:text-xl text-neutral-900 dark:text-neutral-100 font-light">
-                Nouveaux leads
-              </p>
-              <span className="nav-item-number text-xl sm:text-2xl lg:text-3xl font-bold text-neutral-900 dark:text-neutral-100">
-                10
-              </span>
-            </div>
-            <div className="mt-2">
-              <span className="nav-item-rate text-xs sm:text-sm lg:text-base text-green-500">
-              + 12.3% ce mois
-              </span>
-            </div>
-          </div>
-          <div className="nav-item-icon flex items-center justify-center text-3xl sm:text-4xl lg:text-5xl pl-4">
-            <CiCirclePlus />
-          </div>
-        </div>
-      </div>
-
-      <div className="nav-item border-sidebar-border/70 dark:border-sidebar-border relative aspect-video overflow-hidden rounded-xl border">
-        <div className="flex justify-between p-4 sm:p-6">
-          <div className="flex flex-col flex-grow min-w-0">
-            <div>
-              <p className="nav-item-text text-base sm:text-lg lg:text-xl text-neutral-900 dark:text-neutral-100 font-light">
-                En qualification
-              </p>
-              <span className="nav-item-number text-xl sm:text-2xl lg:text-3xl font-bold text-neutral-900 dark:text-neutral-100">
-                3
-              </span>
-            </div>
-            <div className="mt-2">
-              <span className="nav-item-rate text-xs sm:text-sm lg:text-base text-green-500">
-              + 12.3% ce mois
-              </span>
-            </div>
-          </div>
-          <div className="nav-item-icon flex items-center justify-center text-3xl sm:text-4xl lg:text-5xl pl-4">
-            <GoVerified />
-          </div>
-        </div>
-      </div>
-
-      <div className="nav-item border-sidebar-border/70 dark:border-sidebar-border relative aspect-video overflow-hidden rounded-xl border">
-        <div className="flex justify-between p-4 sm:p-6">
-          <div className="flex flex-col flex-grow min-w-0">
-            <div>
-              <p className="nav-item-text text-base sm:text-lg lg:text-xl text-neutral-900 dark:text-neutral-100 font-light">
-                En attente
-              </p>
-              <span className="nav-item-number text-xl sm:text-2xl lg:text-3xl font-bold text-neutral-900 dark:text-neutral-100">
-                12
-              </span>
-            </div>
-            <div className="mt-2">
-            <span className="nav-item-rate text-xs sm:text-sm lg:text-base text-green-500">
-                + 12.3% ce mois
-              </span>
-
-            </div>
-          </div>
-          <div className="nav-item-icon flex items-center justify-center text-3xl sm:text-4xl lg:text-5xl pl-4">
-            <FiAlertCircle />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div className="border-sidebar-border/70 dark:border-sidebar-border relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border md:min-h-min flex">
-      <div className="w-1/2 p-4 flex items-center justify-center bg-gray-100 dark:bg-transparent">
-        <PerformanceDeVenteChart />
-      </div>
-
-      <div className="w-1/2 p-4 flex items-center justify-center bg-gray-100 dark:bg-transparent">
-        <StatsChart stats={statsData} />
-      </div>
-    </div>
-
-  </div>
-</AppLayout>
-
+        </AppLayout>
     );
 }

@@ -109,7 +109,7 @@ class HandleInertiaRequests extends Middleware
                 'documents' => $documents
             ];
         });
-
+        $cinq_dernier_lead = Client::orderBy('created_at', 'desc')->limit(5)->get();
         return [
             ...parent::share($request),
             'name' => config('app.name'),
@@ -120,6 +120,7 @@ class HandleInertiaRequests extends Middleware
                 'name' => $request->user() ? $request->user()->name : "Admin",
             ],
             'clients' => $mappedClients,
+            'CinqDernierLead' => $cinq_dernier_lead,
         ];
     }
 }

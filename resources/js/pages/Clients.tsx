@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { type BreadcrumbItem } from '@/types';
 import axios from 'axios';
-
+import { router } from '@inertiajs/react';
 // Enhanced Client type definition with additional fields
 interface Client {
   id: string;
@@ -637,7 +637,7 @@ export default function Clients({ clients }: ClientsProps) {
                                   {...provided.dragHandleProps}
                                   className="bg-white p-4 mb-3 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-200"
                                 >
-                                  <div className="flex justify-between items-start mb-2">
+                                  <div className="flex justify-between items-start mb-2" onClick={() => router.get(`/Details_clients/${client.id}`)}>
                                     <div>
                                       <h3 className="font-medium">{client.name}</h3>
                                       <p className="text-sm text-gray-600">{client.email}</p>
@@ -704,7 +704,7 @@ export default function Clients({ clients }: ClientsProps) {
                                       <div>Formule: {client.insuranceFormula}</div>
                                     )}
                                   </div>
-                                </div>
+                                </div >
                               )}
                             </Draggable>
                           );

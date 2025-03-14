@@ -27,7 +27,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Messages',
-        url: '/dashboard',
+        url: '/messages',
         icon: MessageCircle,
     },
     

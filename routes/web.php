@@ -7,6 +7,21 @@ use App\Models\Subscription;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\MessageController;
+
+Route::get('Details_clients/{client}', function (Client $client) {
+    return Inertia::render('ClientDetails', [
+        'client' => $client->load(['subscriptions', 'documents'])
+    ]);
+})->name('clients.details');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages');
+    Route::get('/messages/{userId}', [MessageController::class, 'show'])->name('messages.show');
+    Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
+});
+
+
 Route::get('/clients', function () {
     // Get all clients with their related data
     $clients = Client::select(
