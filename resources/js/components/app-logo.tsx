@@ -20,11 +20,11 @@ import { IoLogoCodepen } from "react-icons/io";
 
 export default function AppLogo() {
     return (
-        <div className="flex items-center space-x-2 p-3 rounded-lg bg-gradient-to-r from-blue-500 to-[#04132b] shadow-md">
-            <IoLogoCodepen className="text-white text-3xl" />
-            <div className="text-left text-white">
+        <div className="flex items-center space-x-2 p-3 rounded-lg shadow-md dark:bg-black">
+            <IoLogoCodepen className="text-black text-3xl dark:text-white" />
+            <div className="text-left text-black dark:text-white">
                 <p className="text-lg font-bold leading-tight">
-                    FranceLife <sup className="text-sm font-semibold opacity-80">CRM</sup>
+                    FranceLife <sup className=" font-semibold opacity-80">CRM</sup>
                 </p>
             </div>
         </div>

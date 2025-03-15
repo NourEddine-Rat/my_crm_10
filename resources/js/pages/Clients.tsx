@@ -442,7 +442,7 @@ export default function Clients({ clients }: ClientsProps) {
 
           {/* Filter Panel */}
           {isFilterOpen && (
-            <div className="bg-white p-4 rounded-lg shadow border border-gray-200">
+            <div className="bg-white p-4 rounded-lg shadow border border-gray-200 dark:bg-neutral-900">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {/* Document Status Filter - New section */}
                 <div>
@@ -611,10 +611,10 @@ export default function Clients({ clients }: ClientsProps) {
                 .slice(0, visibleClients);
 
               return (
-                <div key={column.id} className="bg-gray-50 p-4 rounded-lg shadow">
+                <div key={column.id} className="bg-gray-50 p-4 rounded-lg shadow dark:bg-neutral-900">
                   <div className="flex items-center justify-between mb-2">
                     <h2 className="font-bold">{column.title}</h2>
-                    <span className="bg-gray-200 text-gray-800 text-xs font-semibold px-2 py-1 rounded-full">
+                    <span className="bg-gray-200 text-gray-800 text-xs font-semibold px-2 py-1 rounded-full ">
                       {columnClients.length}
                     </span>
                   </div>
@@ -635,7 +635,7 @@ export default function Clients({ clients }: ClientsProps) {
                                   ref={provided.innerRef}
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
-                                  className="bg-white p-4 mb-3 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-200"
+                                  className="bg-white p-4 mb-3 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-200 dark:bg-neutral-900 dark:border-neutral-700"
                                 >
                                   <div className="flex justify-between items-start mb-2" onClick={() => router.get(`/Details_clients/${client.id}`)}>
                                     <div>

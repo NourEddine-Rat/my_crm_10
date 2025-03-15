@@ -147,7 +147,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                                                 </a>
                                             </TooltipTrigger>
                                             <TooltipContent>
-                                                <p>{item.title}</p>
+                                                <p>{item.title}nj</p>
                                             </TooltipContent>
                                         </Tooltip>
                                     </TooltipProvider>

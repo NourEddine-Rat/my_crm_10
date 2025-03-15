@@ -10,6 +10,9 @@ import StatsChart from './StatsChart';
 import PerformanceDeVenteChart from './PerformanceDeVenteChart';
 import './dashboard.css';
 import { router } from '@inertiajs/react';
+import AppearanceTabs from '@/components/appearance-tabs';
+import HeadingSmall from '@/components/heading-small';
+import SettingsLayout from '@/layouts/settings/layout';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
